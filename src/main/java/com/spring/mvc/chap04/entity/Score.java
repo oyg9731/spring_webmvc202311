@@ -45,4 +45,9 @@ public class Score {
         this.eng = score.getEng();
         this.math = score.getMath();
     }
+    public void changeScore(ScoreRequestDTO dto){
+        this.kor = dto.getKor();
+        this.eng = dto.getEng();
+        this.math = dto.getMath();
+    }
 }
