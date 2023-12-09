@@ -25,6 +25,6 @@
     </delete>
 
     <select id="findOne" resultMap="scoreMap">
-        SELECT * FROM tbl_scroe WHERE stu_num=#{stuNum}
+        SELECT * FROM tbl_score WHERE stu_num=#{stuNum}
     </select>
 </mapper>

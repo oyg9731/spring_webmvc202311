@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mvc.chap05.repository.BoardMapper">
+
+
+    <select id="findAll" resultType="com.spring.mvc.chap05.entity.Board">
+        SELECT * FROM tbl_board ORDER BY board_no DESC
+    </select>
+
+    <insert id="save">
+        INSERT INTO tbl_board
+            (title, content)
+        VALUES(#{title}, #{content})
+    </insert>
+
+    <delete id="deleteByNo">
+        DELETE FROM tbl_board WHERE board_no = #{boardNo}
+    </delete>
+
+    <select id="findOne" resultType="com.spring.mvc.chap05.entity.Board">
+        SELECT * FROM tbl_board WHERE board_no=#{boardNo}
+    </select>
+
+    <update id="updateViewCount">
+        UPDATE tbl_board SET view_count = view_count + 1 WHERE board_no=#{boardNo}
+    </update>
+
+
+</mapper>
