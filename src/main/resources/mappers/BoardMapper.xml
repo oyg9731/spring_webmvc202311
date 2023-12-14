@@ -7,6 +7,7 @@
 
     <select id="findAll" resultType="com.spring.mvc.chap05.entity.Board">
         SELECT * FROM tbl_board ORDER BY board_no DESC
+        LIMIT #{pageStart}, #{amount}
     </select>
 
     <insert id="save">
@@ -27,5 +28,8 @@
         UPDATE tbl_board SET view_count = view_count + 1 WHERE board_no=#{boardNo}
     </update>
 
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM tbl_board
+    </select>
 
 </mapper>
