@@ -22,6 +22,9 @@ import java.sql.SQLException;
     =>/replies/all  (x) - 전체조회
     =>/replies  :  GET  (o) - 전체조회
     =>/replies/17  : GET    - 단일조회
+
+    =>/replies/delete?replyNo=3 (x)
+    =>/replies/3 : DELETE       (o)
  */
 
 @RestController
@@ -72,5 +75,34 @@ public class ReplyApiController {
             log.warn("500 status code response!! caused by: {}", e.getMessage());
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
+
+
     }
+    // 댓글 삭제 요청 처리
+    @DeleteMapping("/{replyNo}")
+    public ResponseEntity<?> remove(@PathVariable Long replyNo) {
+
+        if (replyNo == null) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("댓글 번호를 보내주세요!");
+        }
+
+        log.info("/api/v1/replies/{} : DELETE", replyNo);
+
+        try {
+            ReplyListResponseDTO responseDTO = replyService.delete(replyNo);
+
+            return ResponseEntity
+                    .ok()
+                    .body(responseDTO);
+        } catch (Exception e) {
+
+            return ResponseEntity
+                    .internalServerError()
+                    .body(e.getMessage());
+        }
+
+    }
+
 }
