@@ -1,7 +1,6 @@
 package com.spring.mvc.chap05.api;
 
 import com.spring.mvc.chap05.common.Page;
-import com.spring.mvc.chap05.dto.request.ReplyModifyRequestDTO;
 import com.spring.mvc.chap05.dto.request.ReplyPostRequestDTO;
 import com.spring.mvc.chap05.dto.response.ReplyListResponseDTO;
 import com.spring.mvc.chap05.service.ReplyService;
@@ -105,30 +104,5 @@ public class ReplyApiController {
         }
 
     }
-
-    // 댓글 수정 요청 처리
-    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
-        public ResponseEntity<?> update(
-                @Validated @RequestBody ReplyModifyRequestDTO dto
-                ,BindingResult result
-    ){
-        log.info("/api/v1/replies PUT/PATCH");
-        log.debug("parameter: {}", dto);
-        if (result.hasErrors()){
-            return ResponseEntity
-                    .badRequest()
-                    .body(result.toString());
-        }
-
-        try {
-            ReplyListResponseDTO responseDTO = replyService.modify(dto);
-            return ResponseEntity.ok().body(responseDTO);
-
-        }catch (Exception e){
-            log.warn("internal server error!! cased by: {}", e.getMessage());
-            return ResponseEntity.internalServerError().body(e.getMessage());
-        }
-    }
-
 
 }
