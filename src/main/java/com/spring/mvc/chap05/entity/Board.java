@@ -1,18 +1,17 @@
 package com.spring.mvc.chap05.entity;
 
-import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
+import com.spring.mvc.chap05.dto.request.BoardWriteRequestDTO;
 import lombok.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 @Setter @Getter
 @ToString @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder // 빌더패턴으로 객체생성 가능
 public class Board {
 
     private int boardNo; // 게시글 번호
